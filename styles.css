@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans Thai", system-ui, sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+header {
+  text-align: center;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+}
+
+header h1 {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 6px;
+  margin-left: 0;
+  font-size: 24px;
+}
+
+header p {
+  margin: 0;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+article {
+  border: 1px solid #333333;
+  background-color: #242424;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  max-width: 220px;
+  /* เอฟเฟกต์การ์ดมีชีวิตชีวา */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+article img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+article h2 {
+  margin: 12px 0 6px;
+  font-size: 18px;
+}
+
+article p {
+  margin: 0 0 10px;
+  color: #cccccc;
+  font-size: 14px;
+}
+
+article button {
+  border: 1px solid #444444;
+  background: #333333;
+  color: #f0f0f0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+article button:hover {
+  background-color: #444444;
+  border-color: #555555;
+}
+
+footer {
+  text-align: center;
+  color: #888888;
+  font-size: 12px;
+  padding: 20px 0;
+}
+
+/* ส่วนของ OVERLAY ที่ได้รับการยืนยันว่าถูกต้อง */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Z-index สูงมากเพื่อให้แสดงอยู่ด้านบนสุด */
+}
+
+.overlay-box {
+  background-color: #2b2b2b;
+  border: 1px solid #444444;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 320px;
+  text-align: center;
+}
+
+.overlay-box img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.overlay-box a,
+.overlay-box button {
+  display: inline-block;
+  border: 1px solid #444444;
+  border-radius: 6px;
+  background-color: #383838;
+  color: #79a6ff;
+  padding: 6px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 6px;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.overlay-box button {
+    color: #f0f0f0;
+}
+
+.overlay-box a:hover,
+.overlay-box button:hover {
+  background-color: #444444;
+  border-color: #555555;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
