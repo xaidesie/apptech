@@ -1,150 +1,106 @@
-body {
-  margin: 0;
-  font-family: "Charm", cursive;
-  background-color: #1a1a1a;
-  color: #f0f0f0;
+:root{
+  --bg:#fff0f6;
+  --card:#fff6fb;
+  --accent:#ff8fb3;
+  --accent-2:#ffb6d6;
+  --text:#3b1f2b;
+  --muted:#7a4a5a;
+  --danger:#ff6b6b;
+  --radius:12px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-header {
-  text-align: center;
-  padding-top: 24px;
-  padding-right: 16px;
-  padding-bottom: 8px;
-  padding-left: 16px;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background: linear-gradient(180deg, #fff0f6 0%, #fff7fb 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-header h1 {
-  margin-top: 0;
-  margin-right: 0;
-  margin-bottom: 6px;
-  margin-left: 0;
-  font-size: 24px;
+.container{
+  max-width:980px;
+  margin:32px auto;
+  padding:24px;
 }
 
-header p {
-  margin: 0;
-  color: #aaaaaa;
-  font-size: 14px;
+header h1{
+  margin:0 0 6px 0;
+  color:var(--accent-2);
+  font-size:1.6rem;
+  letter-spacing:0.6px;
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  padding: 16px;
+.subtitle{
+  margin:0 0 18px 0;
+  color:var(--muted);
 }
 
-article {
-  border: 1px solid #333333;
-  background-color: #242424;
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  max-width: 220px;
-  /* เอฟเฟกต์การ์ดมีชีวิตชีวา */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  cursor: pointer;
+.panel{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow: 0 4px 18px rgba(139, 46, 98, 0.06);
+  margin-bottom:16px;
+  border:1px solid rgba(255,140,180,0.15);
 }
 
-article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+.row{display:flex; gap:8px; align-items:center; margin-top:8px; flex-wrap:wrap}
+
+.btn{
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+  border: none;
+  color:white;
+  padding:8px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow: 0 6px 14px rgba(255,140,180,0.18);
+  font-weight:600;
 }
 
-article img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
+.btn.ghost{
+  background:transparent;
+  color:var(--accent-2);
+  border:1px dashed rgba(255,140,180,0.3);
+  box-shadow:none;
 }
 
-article h2 {
-  margin: 12px 0 6px;
-  font-size: 18px;
+.btn.primary{ padding:10px 16px; font-size:0.95rem }
+.btn.danger{ background:linear-gradient(180deg, var(--danger), #ff8b8b) }
+
+.list-area{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(255,250,253,0.6), rgba(255,244,250,0.6));
+  min-height:60px;
 }
 
-article p {
-  margin: 0 0 10px;
-  color: #cccccc;
-  font-size: 14px;
+.form{ display:flex; flex-direction:column; gap:8px; margin-top:8px }
+.form-inline{ display:flex; gap:8px; align-items:center; margin-top:8px}
+
+label{ display:flex; flex-direction:column; font-size:0.9rem; color:var(--muted) }
+input, textarea{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid rgba(139,46,98,0.08);
+  background:linear-gradient(180deg,#fff,#fffefc);
+  margin-top:6px;
 }
 
-article button {
-  border: 1px solid #444444;
-  background: #333333;
-  color: #f0f0f0;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+.result{
+  background: #fff;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(139,46,98,0.06);
+  margin-top:10px;
+  max-height:320px;
+  overflow:auto;
+  font-size:0.9rem;
 }
 
-article button:hover {
-  background-color: #444444;
-  border-color: #555555;
-}
-
-footer {
-  text-align: center;
-  color: #888888;
-  font-size: 12px;
-  padding: 20px 0;
-}
-
-/* ส่วนของ OVERLAY ที่ได้รับการยืนยันว่าถูกต้อง */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 999; /* Z-index สูงมากเพื่อให้แสดงอยู่ด้านบนสุด */
-}
-
-.overlay-box {
-  background-color: #2b2b2b;
-  border: 1px solid #444444;
-  border-radius: 8px;
-  padding: 16px;
-  max-width: 320px;
-  text-align: center;
-}
-
-.overlay-box img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  margin-bottom: 8px;
-}
-
-.overlay-box a,
-.overlay-box button {
-  display: inline-block;
-  border: 1px solid #444444;
-  border-radius: 6px;
-  background-color: #383838;
-  color: #79a6ff;
-  padding: 6px 12px;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 6px;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-.overlay-box button {
-    color: #f0f0f0;
-}
-
-.overlay-box a:hover,
-.overlay-box button:hover {
-  background-color: #444444;
-  border-color: #555555;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px }
+@media (max-width:800px){ .grid-2{ grid-template-columns: 1fr } .container{padding:14px}}
+footer{ margin-top:8px; color:var(--muted); font-size:0.85rem }
+code{ background: #fff0f3; padding:2px 6px; border-radius:5px; color:#86164c }
