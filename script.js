@@ -1,5 +1,5 @@
 // Base API host (ตามที่คุณระบุ)
-const API_HOST = "app-rfpiui4w3-xaides-projects.vercel.app";
+const API_HOST = "https://app-87q3k0clt-flasks-projects-987fd076.vercel.app";
 document.getElementById('api-host').textContent = API_HOST;
 
 const usersArea = document.getElementById('users-area');
@@ -113,4 +113,48 @@ document.getElementById('btn-get').addEventListener('click', async ()=>{
 document.getElementById('btn-delete').addEventListener('click', async ()=>{
   const id = document.getElementById('target-id').value.trim();
   if (!id) { alert('โปรดใส่ user id'); return; }
-  if (!confirm(
+  if (!confirm(จะลบผู้ใช้ id='${id}' หรือไม่?)) return;
+  const r = await apiFetch(/api/users/${encodeURIComponent(id)}, { method: 'DELETE' });
+  setDebug(DELETE /api/users/${id}, r);
+  if (r.ok) {
+    alert(ลบแล้ว: ${JSON.stringify(r.data)});
+    refreshUsers();
+  } else {
+    alert(ลบไม่สำเร็จ: ${r.status});
+  }
+});
+
+// --- PUT (update) ---
+document.getElementById('btn-put').addEventListener('click', async (ev)=>{
+  ev.preventDefault();
+  const id = document.getElementById('target-id').value.trim();
+  if (!id) { alert('โปรดใส่ user id'); return; }
+  const fd = new FormData(document.getElementById('update-form'));
+  const payload = {};
+  for (const [k,v] of fd.entries()) {
+    if (v && v.trim() !== '') payload[k] = v.trim();
+  }
+  if (Object.keys(payload).length === 0) {
+    alert('โปรดใส่ field ที่ต้องการอัปเดต (name, email, role)');
+    return;
+  }
+  const r = await apiFetch(/api/users/${encodeURIComponent(id)}, {
+    method: 'PUT',
+    body: JSON.stringify(payload)
+  });
+  setDebug(PUT /api/users/${id}, r);
+  if (r.ok) {
+    alert('อัปเดตสำเร็จ');
+    refreshUsers();
+    document.getElementById('update-form').reset();
+  } else {
+    alert(อัปเดตไม่สำเร็จ: ${r.status});
+  }
+});
+
+// --- init bindings ---
+document.getElementById('btn-refresh').addEventListener('click', refreshUsers);
+document.getElementById('btn-health').addEventListener('click', checkHealth);
+
+// load initial
+refreshUsers();
